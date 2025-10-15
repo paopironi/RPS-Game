@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RPSGame</title>
+    </head>
+
+    <body>
+        <main>
+            <h1>RPS Game!</h1>
+            <p>Choose one of the buttons below:</p>
+            <p id="buttonContainer">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </p>
+            <p>Your Choice: <span id="userChoice"></span></p>
+            <p>Computer Choice: <span id="computerChoice"></span></p>
+            <p>Result: <span id="result"></span></p>
+        </main>
+        <script>
+            let buttonContainer = document.querySelector("#buttonContainer");
+            let choices = ["rock", "paper", "scissors"];
+            var getRandom = () => {
+                return Math.floor(Math.random() * 3);
+            };
+            buttonContainer.addEventListener("click", (event) => {
+                // generate a random number between 0 and 2
+                let rnd = getRandom();
+                // use the random number to pick an element from the choices array
+                let computerChoice = choices[rnd];
+
+                let result;
+                switch (event.target.id) {
+                    case "rock":
+                        if (computerChoice === "rock") {
+                            result = "It's a tie!";
+                            break;
+                        }
+                        if (computerChoice === "paper") {
+                            result = "You lose!";
+                            break;
+                        }
+                        if (computerChoice === "scissors") {
+                            result = "You win!";
+                            break;
+                        }
+                        break;
+                    case "paper":
+                        if (computerChoice === "rock") {
+                            result = "You win!";
+                            break;
+                        }
+                        if (computerChoice === "paper") {
+                            result = "It's a tie!";
+                            break;
+                        }
+                        if (computerChoice === "scissors") {
+                            result = "You lose!";
+                            break;
+                        }
+                        break;
+                    case "scissors":
+                        if (computerChoice === "rock") {
+                            result = "You lose!";
+                            break;
+                        }
+                        if (computerChoice === "paper") {
+                            result = "You win!";
+                            break;
+                        }
+                        if (computerChoice === "scissors") {
+                            result = "It's a tie!";
+                            break;
+                        }
+                        break;
+                }
+                document.querySelector(
+                    "#userChoice"
+                ).textContent = `${event.target.id}`;
+                document.querySelector(
+                    "#computerChoice"
+                ).textContent = `${computerChoice}`;
+                document.querySelector("#result").textContent = `${result}`;
+            });
+        </script>
+    </body>
+</html>
